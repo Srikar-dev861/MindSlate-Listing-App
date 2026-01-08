@@ -3,8 +3,20 @@ import { Star, ChevronRight } from 'lucide-react';
 import '../styles/PostCard.css';
 
 const PostCard = ({ post, isStarred, onToggleStar }) => {
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+        e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+    };
+
     return (
-        <div className="post-card glass glass-hover animate-reveal">
+        <div
+            className="post-card glass glass-hover animate-reveal"
+            onMouseMove={handleMouseMove}
+        >
+            <div className="spotlight"></div>
             <div className="post-card-header">
                 <span className="post-id">CASE #{post.id}</span>
                 <button

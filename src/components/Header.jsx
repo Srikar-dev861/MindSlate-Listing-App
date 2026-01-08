@@ -1,10 +1,12 @@
 import React from 'react';
-import { Moon, Sun, Search, RefreshCw, LayoutGrid, List } from 'lucide-react';
+import { Moon, Sun, Search, RefreshCw, LayoutGrid, List, Star } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useStarred } from '../hooks/useStarred';
 import '../styles/Header.css';
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
+    const { starredIds } = useStarred();
 
     return (
         <header className="header glass">
@@ -20,6 +22,10 @@ const Header = () => {
                 </div>
 
                 <div className="header-actions">
+                    <div className="reading-list-badge glass">
+                        <Star size={14} fill="#fbbf24" stroke="#fbbf24" />
+                        <span className="badge-text">{starredIds.length} Stories in Hub</span>
+                    </div>
                     <button
                         className="theme-button"
                         onClick={toggleTheme}

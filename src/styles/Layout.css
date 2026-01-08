@@ -71,6 +71,22 @@
     gap: 16px;
 }
 
+.reading-list-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
+}
+
+.badge-text {
+    font-family: var(--font-heading);
+}
+
 .theme-button {
     width: 40px;
     height: 40px;

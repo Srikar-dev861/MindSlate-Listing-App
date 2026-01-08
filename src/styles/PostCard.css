@@ -10,6 +10,30 @@
     overflow: hidden;
 }
 
+.post-card .spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 80%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme='dark'] .post-card .spotlight {
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 80%);
+}
+
+.post-card:hover .spotlight {
+    opacity: 1;
+}
+
 .post-card::before {
     content: '';
     position: absolute;

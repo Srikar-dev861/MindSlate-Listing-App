@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import PostCard from './PostCard';
 import SkeletonGrid from './SkeletonGrid';
-import { Search, RefreshCw, ChevronLeft, ChevronRight, XCircle } from 'lucide-react';
+import { Search, RefreshCw, ChevronLeft, ChevronRight, XCircle, LayoutGrid, List } from 'lucide-react';
 import { usePosts } from '../hooks/usePosts';
 import { useDebounce } from '../hooks/useDebounce';
 import { useStarred } from '../hooks/useStarred';
@@ -16,6 +16,7 @@ const PostList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedUser, setSelectedUser] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
+    const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
 
     const debouncedSearch = useDebounce(searchTerm, 300);
 
@@ -84,6 +85,23 @@ const PostList = () => {
                         <RefreshCw size={18} className={loading ? 'spinning' : ''} />
                     </button>
                 </div>
+
+                <div className="layout-switcher glass">
+                    <button
+                        className={`layout-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                        onClick={() => setViewMode('grid')}
+                        title="Grid View"
+                    >
+                        <LayoutGrid size={18} />
+                    </button>
+                    <button
+                        className={`layout-btn ${viewMode === 'list' ? 'active' : ''}`}
+                        onClick={() => setViewMode('list')}
+                        title="List View"
+                    >
+                        <List size={18} />
+                    </button>
+                </div>
             </div>
 
             {loading && posts.length === 0 ? (
@@ -94,7 +112,7 @@ const PostList = () => {
                     <p>No stories found matching your criteria.</p>
                 </div>
             ) : (
-                <div className="posts-grid">
+                <div className={`posts-container ${viewMode}-view`}>
                     {paginatedPosts.map((post, index) => (
                         <div key={post.id} style={{ animationDelay: `${index * 0.1}s` }}>
                             <PostCard
