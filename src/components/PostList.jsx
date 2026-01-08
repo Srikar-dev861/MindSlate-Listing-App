@@ -4,7 +4,7 @@ import SkeletonGrid from './SkeletonGrid';
 import { Search, RefreshCw, ChevronLeft, ChevronRight, XCircle, LayoutGrid, List } from 'lucide-react';
 import { usePosts } from '../hooks/usePosts';
 import { useDebounce } from '../hooks/useDebounce';
-import { useStarred } from '../hooks/useStarred';
+import { useStarred } from '../context/StarredContext';
 import '../styles/PostList.css';
 
 const POSTS_PER_PAGE = 9;

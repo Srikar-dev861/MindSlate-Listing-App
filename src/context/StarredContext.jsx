@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export const useStarred = () => {
+const StarredContext = createContext();
+
+export const StarredProvider = ({ children }) => {
     const [starredIds, setStarredIds] = useState(() => {
         const saved = localStorage.getItem('starredPosts');
         return saved ? JSON.parse(saved) : [];
@@ -16,5 +18,11 @@ export const useStarred = () => {
         );
     };
 
-    return { starredIds, toggleStar };
+    return (
+        <StarredContext.Provider value={{ starredIds, toggleStar }}>
+            {children}
+        </StarredContext.Provider>
+    );
 };
+
+export const useStarred = () => useContext(StarredContext);

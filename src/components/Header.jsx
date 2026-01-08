@@ -1,7 +1,7 @@
 import React from 'react';
 import { Moon, Sun, Search, RefreshCw, LayoutGrid, List, Star } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import { useStarred } from '../hooks/useStarred';
+import { useStarred } from '../context/StarredContext';
 import '../styles/Header.css';
 
 const Header = () => {
